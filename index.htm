@@ -12,33 +12,6 @@
       overflow: hidden;
     }
 
-    .container {
-      width: 100vw;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      color: #fff;
-      text-align: center;
-      padding: 20px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .slide {
-      display: none;
-      animation: fade 1.2s;
-    }
-
-    .slide img {
-      max-width: 90%;
-      max-height: 70vh;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    }
-
-    /* VIDEO BACKGROUND */
     .bg-video {
       position: fixed;
       top: 0;
@@ -50,58 +23,47 @@
       z-index: 0;
     }
 
-    h1 {
-      font-size: 2.2em;
-      margin-bottom: 10px;
+    .container {
+      width: 100vw;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      text-align: center;
+      padding: 20px 16px 120px;
+      box-sizing: border-box;
+      position: relative;
+      z-index: 1;
     }
 
-    /* RESPONSIVE HP */
-    @media (max-width: 768px) {
-      body { overflow: hidden; }
-      h1 { font-size: 1.4em; }
-      p { font-size: 0.95em; }
-      .container {
-        justify-content: flex-start;
-        padding-top: 60px;
-      }
-      .slide img {
-        max-width: 100%;
-        max-height: 55vh;
-      }
-    }
-      p { font-size: 1em; }
-      .slide img {
-        max-width: 95%;
-        max-height: 60vh;
-      }
+    .slide {
+      display: none;
+      animation: fade 1.2s;
     }
 
-    p {
-      font-size: 1.2em;
-      margin-top: 15px;
+    .slide img {
+      width: 100%;
+      max-width: 360px;
+      max-height: 55vh;
+      object-fit: cover;
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     }
 
-    @keyframes fade {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    h1 { font-size: 1.8em; margin: 8px 0; }
+    p { font-size: 1.05em; margin-top: 12px; }
+
+    @keyframes fade { from {opacity:0;} to {opacity:1;} }
+
+    .fade-love { opacity:0; animation: fadeLove 4s forwards; }
+    .fade-love.delay { animation-delay: 1.5s; }
+    @keyframes fadeLove {
+      from {opacity:0; transform:translateY(20px);} 
+      to {opacity:1; transform:translateY(0);} 
     }
 
-    /* FADE LOVE TEXT */
-    .fade-love {
-      opacity: 0;
-      animation: fadeInLove 4s forwards;
-    }
-
-    .fade-love.delay {
-      animation-delay: 1.5s;
-    }
-
-    @keyframes fadeInLove {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* LOVE EFFECT */
     .love {
       position: fixed;
       top: -10px;
@@ -110,32 +72,7 @@
       animation: fall 6s linear infinite;
       z-index: 2;
     }
-
-    @keyframes fall {
-      to {
-        transform: translateY(110vh);
-        opacity: 0;
-      }
-    }
-
-    /* STAR EFFECT */
-    .star {
-      position: fixed;
-      width: 3px;
-      height: 3px;
-      background: white;
-      border-radius: 50%;
-      animation: twinkle 5s linear infinite;
-      z-index: 2;
-    }
-
-    @keyframes twinkle {
-      0% { opacity: 0; }
-      50% { opacity: 1; }
-      100% { opacity: 0; }
-    }
-
-    audio { display: none; }
+    @keyframes fall { to { transform: translateY(110vh); opacity:0; } }
 
     .controls {
       position: fixed;
@@ -146,144 +83,100 @@
       gap: 12px;
       z-index: 3;
     }
-
-    .controls button {
-      padding: 14px 22px;
-      font-size: 15px;
-      border: none;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.9);
-      color: #ff6f91;
-      cursor: pointer;
-    }
-
     .controls button {
       padding: 12px 20px;
       font-size: 16px;
       border: none;
-      border-radius: 30px;
-      background: #fff;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.95);
       color: #ff6f91;
       cursor: pointer;
     }
+
+    audio { display:none; }
   </style>
 </head>
 <body>
 
-  <!-- MUSIK -->
-  <!-- MUSIK (AUTOPLAY BUTUH INTERAKSI USER DI HP) -->
   <audio id="bgMusic" loop>
-    <source src="cloud9.mp3" type="audio/mpeg" />
+    <source src="cloud9.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- VIDEO BACKGROUND -->
-  <video id="finalVideo" class="bg-video" autoplay muted loop>
+  <video class="bg-video" autoplay muted loop playsinline>
     <source src="video.mp4" type="video/mp4">
   </video>
 
   <div class="container">
-
     <div class="slide">
       <h1>Happy Birthday 🎉</h1>
       <h1>Iinda Zifa Nur Azkiya</h1>
       <p>22 Januari • 19 Tahun</p>
     </div>
 
-    <div class="slide">
-      <img src="foto1.jpg" alt="Foto 1">
-      <p>Hari ini adalah hari spesialmu 🤍</p>
-    </div>
-
-    <div class="slide">
-      <img src="foto2.jpg" alt="Foto 2">
-      <p>Terima kasih sudah menjadi bagian terindah hidupku ✨</p>
-    </div>
-
-    <div class="slide">
-      <img src="foto3.jpg" alt="Foto 3">
-      <p>Senyummu selalu jadi alasanku bahagia 🌸</p>
-    </div>
-
-    <div class="slide">
-      <img src="foto4.jpg" alt="Foto 4">
-      <p>Semoga semua mimpi dan harapanmu tercapai 🌷</p>
-    </div>
+    <div class="slide"><img src="foto1.jpg"><p>Hari ini adalah hari spesialmu 🤍</p></div>
+    <div class="slide"><img src="foto2.jpg"><p>Terima kasih sudah hadir di hidupku ✨</p></div>
+    <div class="slide"><img src="foto3.jpg"><p>Senyummu selalu buatku bahagia 🌸</p></div>
+    <div class="slide"><img src="foto4.jpg"><p>Semoga semua mimpimu tercapai 🌷</p></div>
 
     <div class="slide">
       <h1 class="fade-love">I love you ❤️</h1>
       <p class="fade-love delay">Bachtiar sayang Zifa</p>
     </div>
+  </div>
 
-    <div class="controls">
-      <button onclick="prevSlide()">⬅</button>
-      <button onclick="toggleAuto()" id="autoBtn">▶ Auto</button>
-      <button onclick="nextSlide()">➡</button>
-    </div>
-
+  <div class="controls">
+    <button onclick="prevSlide()">⬅</button>
+    <button id="autoBtn" onclick="toggleAuto()">▶ Auto</button>
+    <button onclick="nextSlide()">➡</button>
   </div>
 
   <script>
-    // SLIDE LOGIC
     let slideIndex = 1;
     const slides = document.getElementsByClassName('slide');
+    let autoTimer = null;
+    let isAuto = false;
 
     function showSlide(n) {
-      if (n > slides.length) slideIndex = slides.length;
-      if (n < 1) slideIndex = 1;
-      for (let i = 0; i < slides.length; i++) {
-        slides[i].style.display = 'none';
-      }
+      if (n > slides.length) slideIndex = 1;
+      if (n < 1) slideIndex = slides.length;
+      for (let i = 0; i < slides.length; i++) slides[i].style.display = 'none';
       slides[slideIndex - 1].style.display = 'block';
     }
 
-    function nextSlide() {
-      slideIndex++;
-      showSlide(slideIndex);
-
-    // AUTO SLIDE OPTION
-    let autoPlay = false;
-    let autoTimer = null;
+    function nextSlide() { slideIndex++; showSlide(slideIndex); }
+    function prevSlide() { slideIndex--; showSlide(slideIndex); }
 
     function toggleAuto() {
-      autoPlay = !autoPlay;
       const btn = document.getElementById('autoBtn');
-      if (autoPlay) {
+      if (!isAuto) {
+        autoTimer = setInterval(nextSlide, 5000);
         btn.innerText = '⏸ Stop';
-        autoTimer = setInterval(() => {
-          slideIndex++;
-          if (slideIndex > slides.length) slideIndex = 1;
-          showSlide(slideIndex);
-        }, 5000);
+        isAuto = true;
       } else {
-        btn.innerText = '▶ Auto';
         clearInterval(autoTimer);
+        btn.innerText = '▶ Auto';
+        isAuto = false;
       }
     }
 
+    showSlide(slideIndex);
+
     // LOVE EFFECT
-    function createLove() {
+    setInterval(() => {
       const love = document.createElement('div');
       love.className = 'love';
       love.innerHTML = '❤';
       love.style.left = Math.random() * 100 + 'vw';
-      love.style.fontSize = Math.random() * 20 + 10 + 'px';
+      love.style.fontSize = Math.random() * 18 + 12 + 'px';
       document.body.appendChild(love);
       setTimeout(() => love.remove(), 6000);
-    }
-    setInterval(createLove, 400);
+    }, 400);
 
-    // STAR EFFECT
-    function createStar() {
-      const star = document.createElement('div');
-      star.className = 'star';
-      star.style.left = Math.random() * 100 + 'vw';
-      star.style.top = Math.random() * 100 + 'vh';
-      document.body.appendChild(star);
-      setTimeout(() => star.remove(), 5000);
-    }
-    setInterval(createStar, 300);
+    // MUSIC START AFTER TOUCH (iPhone)
+    document.body.addEventListener('click', () => {
+      document.getElementById('bgMusic').play();
+    }, { once:true });
   </script>
 
 </body>
 </html>
-
