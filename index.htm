@@ -22,7 +22,7 @@ body {
   width: 100vw;
   height: 100vh;
   object-fit: cover;
-  opacity: 0.6;
+  opacity: 0.70;
   z-index: 0;
 }
 
@@ -196,7 +196,7 @@ function prevSlide() { slideIndex--; showSlide(slideIndex); }
 function toggleAuto() {
   const btn = document.getElementById('autoBtn');
   if (!isAuto) {
-    autoTimer = setInterval(nextSlide, 5000);
+    autoTimer = setInterval(nextSlide, 8000);
     btn.innerText = '⏸ Stop';
     isAuto = true;
   } else {
@@ -227,6 +227,7 @@ document.body.addEventListener('click', () => {
 
 </body>
 </html>
+
 
 
 
